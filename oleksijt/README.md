@@ -1,1 +1,1 @@
-My projects for programming_educstion
+My projects for programming_education
