@@ -19,9 +19,10 @@ books = [
 
 
 def min_price(data: list) -> str:
-    data.sort(key=lambda x: x['price'])
 
-    return "The cheapest book is '{}'. It costs {} grn.".format(data[0].get('name'), data[0].get('price'))
+    cheapest_book = min(data, key=lambda x: x['price'])
+
+    return "The cheapest book is '{}'. It costs {} grn.".format(cheapest_book.get('name'), cheapest_book.get('price'))
 
 
 if __name__ == '__main__':
