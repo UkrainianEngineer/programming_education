@@ -31,15 +31,13 @@ books = [{
         'price': 650
     }]
 
-#set vars
-chbookprice = 0
+#set first book as cheapest
+cheapest_book = books[0]
 
-#look for cheapest book price in books and set vars
+#look for cheapest bookin books
 for book in books:
-    bookprice = book ['price']
-    if chbookprice == 0 or chbookprice > bookprice:
-        chbookname = book ['name']
-        chbookprice = bookprice
+    if cheapest_book['price'] > book['price']:
+        cheapest_book = book
 
 #print result       
-print ('The cheapest book is ‘' + chbookname +'’. It costs ' + str(chbookprice) + ' grn.')
+print ('The cheapest book is ‘' + cheapest_book['name'] +'’. It costs ' + str(cheapest_book['price']) + ' grn.')
