@@ -9,16 +9,16 @@ num = ‘611091234512’
 result = 6+1+1+0+9+1+2+3+4+5+1+2 = 35
 """
 
+
 def calculate_digits(num):
     num = str(num)
-    list_of_digits = list(num)
-    sumdigits = 0
-    for i in list_of_digits:
+    sum_of_digits = 0
+    for digit in num:
         try:
-            sumdigits += int(i)
+            sum_of_digits += int(digit)
         except ValueError:
             continue
-    return sumdigits
+    return sum_of_digits
 
 
 print(calculate_digits(15))
@@ -26,3 +26,4 @@ print(calculate_digits(25))
 print(calculate_digits('611091234512'))
 print(calculate_digits('a5sd45g6'))
 print(calculate_digits('areyt@ryrtjh'))
+print(calculate_digits(''))
