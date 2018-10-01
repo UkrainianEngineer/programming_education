@@ -103,5 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# idea
+.idea/
+
 # Netbeans project folder
 /nbproject
