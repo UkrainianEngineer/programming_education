@@ -1,17 +1,19 @@
 """
-Task #1
+This function calculate sum of all digits of a number.
+A number can be represented in integer or string type.
+Value of the letters or any blank symbol equated to zero.
 
-Calculate sum of all digits of a number set in string.
 Example:
-num = ‘12345’
-Your script should calculate it like: 1+2+3+4+5 = 15
-num = ‘611091234512’
-result = 6+1+1+0+9+1+2+3+4+5+1+2 = 35
+num = '12345'
+the function calculate it like: 1+2+3+4+5 = 15
+num = 'a5sd45g6'
+result = 5+4+5+6 = 20
 """
 
 
 def calculate_digits(num):
-    num = str(num)
+    if type(num) is int:
+        num = str(num)
     sum_of_digits = 0
     for digit in num:
         try:
@@ -25,5 +27,5 @@ print(calculate_digits(15))
 print(calculate_digits(25))
 print(calculate_digits('611091234512'))
 print(calculate_digits('a5sd45g6'))
-print(calculate_digits('areyt@ryrtjh'))
+print(calculate_digits('arey\nt@ry rtjh'))
 print(calculate_digits(''))
