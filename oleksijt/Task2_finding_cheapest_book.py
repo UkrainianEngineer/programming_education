@@ -4,7 +4,7 @@ in format:
 """
 
 
-# Fill dict
+# Fill dict.
 books = [{
         'name': 'Lord of the rings',
         'price': 700
@@ -19,9 +19,9 @@ books = [{
     }]
 
 try:
-    # Look for cheapest book in books
+    # Look for cheapest book in books.
     cheapest_book = min(books, key=lambda book: book['price'])
-    # Print result       
+    # Print result.
     print('The cheapest book is ‘{0}’. It costs {1} grn.'.format(
         cheapest_book['name'],
         cheapest_book['price']
