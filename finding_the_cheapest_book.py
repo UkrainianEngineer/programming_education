@@ -1,5 +1,5 @@
 """
-in this file I am finding the cheapest book in list of dictionaries.
+Finding the cheapest book in list of dictionaries.
 
 """
 books = [{
