@@ -15,10 +15,7 @@ def calculate_digits(num):
     35
     """
 
-    sum_of_digits = 0
-    for digit in num:
-        sum_of_digits += int(digit)
-    return sum_of_digits
+    return sum(int(digit) for digit in num)
 
 
 if __name__ == '__main__':
