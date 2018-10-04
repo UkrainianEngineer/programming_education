@@ -4,7 +4,7 @@ in format:
 """
 
 
-# Fill dict.
+# Initialize dictionary with books.
 books = [{
         'name': 'Lord of the rings',
         'price': 700
@@ -26,5 +26,7 @@ try:
         cheapest_book['name'],
         cheapest_book['price']
         ))
-except:
-    print('No books found')
+except ValueError:
+    print('The book list is empty')
+except NameError:
+    print('The book list not found')
