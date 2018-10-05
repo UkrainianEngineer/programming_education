@@ -6,7 +6,9 @@ result = 6+1+1+0+9+1+2+3+4+6+1+2 = 36
 
 
 num = '611091234512'
-# Calculate and print the sum of digits in number.
-print(sum(map(int, num)))
+# Calculate the sum of digits in number.
+result = sum(int(digit) for digit in num)
+# Print result.
+print(result)
     
 
