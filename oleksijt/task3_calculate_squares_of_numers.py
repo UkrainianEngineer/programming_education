@@ -6,7 +6,7 @@
  (without huge amount of virtual memory, CPU, etc.).
  Code should works under both versions of Python (2.X, 3.X).
 
- In result runs in Python 3.6 an also Python 2.7.15.
+ In result script runs in Python 3.6 an also Python 2.7.15.
  Python 2.7.15 runs with max_range up to 1000000.
  """
 
