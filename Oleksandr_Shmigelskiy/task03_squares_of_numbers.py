@@ -3,7 +3,7 @@ import sys
 from datetime import datetime
 start_time = datetime.now()
 
-big_number = 1000000
+big_number = 100000000000
 big_list = []
 
 if sys.version[0] == '2':
