@@ -14,6 +14,7 @@ class Car(object):
         self.model = model
         self.year = year
         self.max_speed = max_speed
+        
     def get_car_type(self):
         """
         Class method, which returns type of the car.
@@ -25,49 +26,60 @@ class Car(object):
             return "Petrol"
         elif self.car_type == "electric":
             return "Electric"
+        
     def change_type(self, new_car_type):
         """
         Class method, that changes type of the car.
         :param new_car_type: New type of the car.
         """
         self.car_type = new_car_type
+        
 
 class ElectricCar(Car):
     """
     This class represents Electro Car, inherited for class Car.
     """
     car_type = "electric"
+    
     def __init__(self, model, year, max_speed):
         self.model = model
         self.year = year
         self.max_speed = max_speed
+        
     def get_car_type(self):
         return "Electric"
 
+    
 class GasCar(Car):
     """
-        This class represents Gas Car, inherited for class Car.
-        """
+    This class represents Gas Car, inherited for class Car.
+    """
     car_type = "gas"
+    
     def __init__(self, model, year, max_speed):
         self.model = model
         self.year = year
         self.max_speed = max_speed
+        
     def get_car_type(self):
         return "Gas"
 
+    
 class PetrolCar(Car):
     """
-        This class represents Petrol Car, inherited for class Car.
-        """
+    This class represents Petrol Car, inherited for class Car.
+    """
     car_type = "petrol"
+    
     def __init__(self, model, year, max_speed):
         self.model = model
         self.year = year
         self.max_speed = max_speed
+        
     def get_car_type(self):
         return "Petrol"
 
+    
 car = Car('gas', 'BMW', 2018, 280)
 print(car.get_car_type())  # prints 'Gas'
 car.change_type('petrol')
