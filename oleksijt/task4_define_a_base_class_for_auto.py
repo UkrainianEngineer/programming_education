@@ -26,8 +26,7 @@ class Car:
         self.model = model
         self.year = year
         self.max_speed = max_speed
-        car_class = eval(type.title())
-        self.__class__ = car_class
+
 
     def change_type(self, type):
         self.__class__ = eval(type.title())
