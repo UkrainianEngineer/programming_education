@@ -1,56 +1,54 @@
-"""4. Define a base class for auto.
-Base class should contain:
+""" This code create class Car and derived classes for car types.
+ Base class contain:
 Fields:
  - type (gas, electro, petrol)
  - model
  - year
  - max speed.
-Method:
+Methods:
  - get car type
-
-Define child classes for each type of car.
-`get_car_type` method should return just an appropriate type of car.
-
-Create a general class which should work in this way:
-
-car = Car('gas', 'BMW', 2018, 280)
-print(car.get_car_type())  # prints `Gas`
-car.change_type('petrol')
-print(car.get_car_type())  # prints `Petrol`.
+ - change car type
 """
 
 
 class Car:
-    def __init__(self, type, model, year, max_speed):
-        self.type = type
+    """ Base class for autos. """
+    def __init__(self, car_type, model, year, max_speed):
+        self.car_type = car_type
         self.model = model
         self.year = year
         self.max_speed = max_speed
 
-
-    def change_type(self, type):
-        self.__class__ = eval(type.title())
-        self.type = type
+    def change_type(self, car_type):
+        self.__class__ = eval(car_type.title())  # Changes class.
+        self.car_type = car_type  # Set new type.
 
     def get_car_type(self):
-        return self.type.title()
+        return self.car_type.title()
+
 
 class Gas(Car):
+    """ Gas car class. """
     def __init__(self):
         super().__init__()
-        self.type = 'Gas'
+        self.car_type = 'Gas'
+
 
 class Electro(Car):
+    """ Electro car class. """
     def __init__(self):
         super().__init__()
-        self.type = 'Electro'
+        self.car_type = 'Electro'
 
 class Petrol(Car):
+    """ Petrol car class. """
     def __init__(self):
         super().__init__()
-        self.type = 'Petrol'
+        self.car_type = 'Petrol'
 
-car = Car('gas', 'BMW', 2018, 280)
+
+car = Car('gas', 'BMW', 2018, 280)  # Create new object 'Car'
 print(car.get_car_type())
-car.change_type('petrol')
+car.change_type('petrol')  # Change type and class of object 'Car'
 print(car.get_car_type())
+
