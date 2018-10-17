@@ -21,7 +21,7 @@ class Car:
 
     def change_type(self, car_type):
         """ Change car_type. """
-        self.car_type = car_type  # Set new type for changed class.
+        self.car_type = car_type  # Set new type.
 
     def get_car_type(self):
         return self.car_type.title()
