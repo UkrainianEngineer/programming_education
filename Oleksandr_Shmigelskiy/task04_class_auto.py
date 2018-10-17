@@ -1,37 +1,37 @@
 class Car(object):
 
-	def __init__(self, model, year, max_speed, type=''):
-		self.model = model
-		self.year = year
-		self.max_speed = max_speed
-		self.type = type.capitalize()
+    def __init__(self, model, year, max_speed, car_type=''):
+        self.model = model
+        self.year = year
+        self.max_speed = max_speed
+        self.car_type = car_type
 
-	def get_car_type(self):
-		return self.type
+    def get_car_type(self):
+        return self.car_type.title()
 
-	def change_type(self, new_type):
-		self.type = new_type.capitalize()
+    def change_type(self, new_type):
+        self.car_type = new_type.title()
 
 
 class CarGas(Car):
 
-	def __init__(self, model, year, max_speed, type='Gas'):
-		super(CarGas, self).__init__(model, year, max_speed)
-		self.type = type
+    def __init__(self, model, year, max_speed):
+        super(CarGas, self).__init__(model, year, max_speed)
+        self.car_type = 'Gas'
 
 
 class CarPetrol(Car):
 
-	def __init__(self, model, year, max_speed, type='Petrol'):
-		super(CarPetrol, self).__init__(model, year, max_speed)
-		self.type = type
+    def __init__(self, model, year, max_speed):
+        super(CarPetrol, self).__init__(model, year, max_speed)
+        self.car_type = 'Petrol'
 
 
 class CarElectro(Car):
 
-	def __init__(self, model, year, max_speed, type='Electro'):
-		super(CarElectro, self).__init__(model, year, max_speed)
-		self.type = type
+    def __init__(self, model, year, max_speed):
+        super(CarElectro, self).__init__(model, year, max_speed)
+        self.car_type = 'Electro'
 
 
 car_bmw = Car('BMW', 2018, 280, 'gas')
