@@ -10,8 +10,6 @@ Methods:
  - change car type
 """
 
-import sys
-
 
 class Car:
     """ Base class for autos. """
@@ -22,9 +20,7 @@ class Car:
         self.max_speed = max_speed
 
     def change_type(self, car_type):
-        """Change class and car_type. If class doesn't exist,
-        class sets as base class."""
-        self.__class__ = getattr(sys.modules[__name__], car_type.title(), Car)
+        """ Change car_type. """
         self.car_type = car_type  # Set new type for changed class.
 
     def get_car_type(self):
@@ -44,6 +40,7 @@ class Electro(Car):
         super().__init__()
         self.car_type = 'Electro'
 
+
 class Petrol(Car):
     """ Petrol car class. """
     def __init__(self):
@@ -55,5 +52,3 @@ car = Car('gas', 'BMW', 2018, 280)  # Create new object 'Car'
 print(car.get_car_type())
 car.change_type('petrol')  # Change type and class of object 'Car'
 print(car.get_car_type())
-
-
