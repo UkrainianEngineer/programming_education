@@ -40,9 +40,6 @@ class ElectricCar(Car):
         self.model = model
         self.year = year
         self.max_speed = max_speed
-        
-    def get_car_type(self):
-        return self.car_type
 
     
 class GasCar(Car):
@@ -55,9 +52,6 @@ class GasCar(Car):
         self.model = model
         self.year = year
         self.max_speed = max_speed
-        
-    def get_car_type(self):
-        return self.car_type
 
     
 class PetrolCar(Car):
@@ -70,9 +64,6 @@ class PetrolCar(Car):
         self.model = model
         self.year = year
         self.max_speed = max_speed
-        
-    def get_car_type(self):
-        return self.car_type
 
     
 car = Car('gas', 'BMW', 2018, 280)
