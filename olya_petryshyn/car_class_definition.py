@@ -20,12 +20,7 @@ class Car(object):
         Class method, which returns type of the car.
         :return: The type of the car.
         """
-        if self.car_type == "gas":
-            return "Gas"
-        elif self.car_type == "petrol":
-            return "Petrol"
-        elif self.car_type == "electric":
-            return "Electric"
+        return self.car_type
         
     def change_type(self, new_car_type):
         """
@@ -47,7 +42,7 @@ class ElectricCar(Car):
         self.max_speed = max_speed
         
     def get_car_type(self):
-        return "Electric"
+        return self.car_type
 
     
 class GasCar(Car):
@@ -62,7 +57,7 @@ class GasCar(Car):
         self.max_speed = max_speed
         
     def get_car_type(self):
-        return "Gas"
+        return self.car_type
 
     
 class PetrolCar(Car):
@@ -77,7 +72,7 @@ class PetrolCar(Car):
         self.max_speed = max_speed
         
     def get_car_type(self):
-        return "Petrol"
+        return self.car_type
 
     
 car = Car('gas', 'BMW', 2018, 280)
