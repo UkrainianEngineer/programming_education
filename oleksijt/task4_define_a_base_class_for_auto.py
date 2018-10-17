@@ -1,4 +1,4 @@
-""" This code create class Car and derived classes for car types.
+""" This code creates class Car and derived classes for car types.
  Base class contain:
 Fields:
  - type (gas, electro, petrol)
@@ -10,6 +10,8 @@ Methods:
  - change car type
 """
 
+import sys
+
 
 class Car:
     """ Base class for autos. """
@@ -20,8 +22,10 @@ class Car:
         self.max_speed = max_speed
 
     def change_type(self, car_type):
-        self.__class__ = eval(car_type.title())  # Changes class.
-        self.car_type = car_type  # Set new type.
+        """Change class and car_type. If class doesn't exist,
+        class sets as base class."""
+        self.__class__ = getattr(sys.modules[__name__], car_type.title(), Car)
+        self.car_type = car_type  # Set new type for changed class.
 
     def get_car_type(self):
         return self.car_type.title()
@@ -51,4 +55,5 @@ car = Car('gas', 'BMW', 2018, 280)  # Create new object 'Car'
 print(car.get_car_type())
 car.change_type('petrol')  # Change type and class of object 'Car'
 print(car.get_car_type())
+
 
