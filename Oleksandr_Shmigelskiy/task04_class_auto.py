@@ -1,6 +1,6 @@
 class Car(object):
 
-    def __init__(self, model, year, max_speed, car_type=''):
+    def __init__(self, model, year, max_speed, car_type='Not defined'):
         self.model = model
         self.year = year
         self.max_speed = max_speed
@@ -10,7 +10,7 @@ class Car(object):
         return self.car_type.title()
 
     def change_type(self, new_type):
-        self.car_type = new_type.title()
+        self.car_type = new_type
 
 
 class CarGas(Car):
@@ -34,7 +34,7 @@ class CarElectro(Car):
         self.car_type = 'Electro'
 
 
-car_bmw = Car('BMW', 2018, 280, 'gas')
+car_bmw = Car('BMW', 2018, 280, 'petrol')
 
 print(car_bmw.get_car_type())
 car_bmw.change_type('petrol')
