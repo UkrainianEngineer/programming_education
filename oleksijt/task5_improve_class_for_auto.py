@@ -8,30 +8,38 @@ Fields:
 Methods:
  - get car type
  - change car type
-
-
-
- 5. Improve previous task to make it possible to run code in this way:
-
-car = Car('BMW', 2018, 300)
-petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
-petrol_car.get_model()  # Returns `BMW`
-petrol_car.get_year()  # Returns 2018
-petrol_car.get_max_speed()  # Returns 300
-
-gas_car = car.set_car_type('gas')  # It returns `GasCar` instance.
-
-
+ - change car class
+ - get car model
+ - get car year
+ - get car max speed
 """
+
+import sys
 
 
 class Car:
     """Base class for autos."""
-    def __init__(self, car_type, model, year, max_speed):
+    car_class_types = {
+        'Petrol': 'PetrolCar',
+        'Gas': 'GasCar',
+        'Electro': 'ElectroCar',
+        'Car': 'Car'
+    }
+
+    def __init__(self, model, year, max_speed, car_type="Car"):
         self.car_type = car_type
         self.model = model
         self.year = year
         self.max_speed = max_speed
+
+    def find_new_car_class(car_type):
+        # Find class for new car type.
+        found_class = Car.car_class_types.get(car_type)
+        if found_class:
+            return found_class
+        else:
+            print('New car type not found. Base class set.')
+            return 'Car'
 
     def change_type(self, car_type):
         # Changes only car_type parameter without class changing.
@@ -39,21 +47,23 @@ class Car:
 
     def set_car_type(self, car_type):
         # Changes class of object Car.
-        self.__class__ = gett
+        new_car_class = Car.find_new_car_class(car_type.title())
+        self.__class__ = getattr(sys.modules[__name__], new_car_class)
         self.car_type = car_type
-        return self.car_type.title()
+        return self
 
     def get_car_type(self):
         return self.car_type.title()
 
     def get_model(self):
-        return self.car_type.title()
+        return self.model
 
     def get_year(self):
-        return self.car_type.title()
+        return self.year
 
     def get_max_speed(self):
-        return self.car_type.title()
+        return self.max_speed
+
 
 class GasCar(Car):
     """Gas car class."""
@@ -77,18 +87,21 @@ class PetrolCar(Car):
 
 
 # Create new object 'Car'
-car = Car('gas', 'BMW', 2018, 280)
-print(car.get_car_type())
+car1 = Car('BMW', 2018, 280, 'gas')
+print(car1.get_car_type())
 
 # Change type of object 'Car'
-car.change_type('petrol')
-print(car.get_car_type())
+car1.change_type('petrol')
+print(car1.get_car_type())
 
-
+# Create  new object 'Car'
 car = Car('BMW', 2018, 300)
+print(car)
+
+# Change object class
 petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
-print(car.__class__)
-print(petrol_car.__class__)
-petrol_car.get_model()  # Returns `BMW`
-petrol_car.get_year()  # Returns 2018
-petrol_car.get_max_speed()  # Returns 300
+print(petrol_car)
+print(petrol_car.get_model())  # Returns `BMW`
+print(petrol_car.get_year())  # Returns 2018
+print(petrol_car.get_max_speed())  # Returns 300
+print(petrol_car.get_car_type())  # Returns Petrol
