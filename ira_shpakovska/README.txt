@@ -1,1 +1,1 @@
-my expectation and needs: to learn python and git.   
+My expectations and needs: to learn python and git.   
