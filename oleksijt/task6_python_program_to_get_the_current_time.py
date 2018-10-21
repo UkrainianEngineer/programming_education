@@ -1,5 +1,4 @@
 """ This script gets the current time """
-
 import datetime
 
 
