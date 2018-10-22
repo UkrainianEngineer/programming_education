@@ -19,5 +19,5 @@ def find_longest_word(file_name):
         return longest_word
 
 
-print('The longest word in the file is "{}".'.format(
+print('The longest word in file is "{}".'.format(
         find_longest_word('task7_demo_file.txt')))
