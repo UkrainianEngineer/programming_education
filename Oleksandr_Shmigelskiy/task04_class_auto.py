@@ -12,6 +12,20 @@ class Car(object):
     def change_type(self, new_type):
         self.car_type = new_type
 
+    def set_car_type(self, car_type):
+        # return CarPetrol(self.model, self.year, self.max_speed)
+        self.__class__ = CarPetrol
+        return self
+
+    def get_model(self):
+        return self.model
+
+    def get_year(self):
+        return self.year
+
+    def get_max_speed(self):
+        return self.max_speed
+
 
 class CarGas(Car):
 
@@ -34,22 +48,15 @@ class CarElectro(Car):
         self.car_type = 'Electro'
 
 
-car_bmw = Car('BMW', 2018, 280, 'petrol')
+car = Car('BMW', 2018, 300)
 
-print(car_bmw.get_car_type())
-car_bmw.change_type('petrol')
-print(car_bmw.get_car_type())
+petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+print(petrol_car.get_model())  # Returns `BMW`
+print(petrol_car.get_year())  # Returns 2018
+print(petrol_car.get_max_speed())  # Returns 300
+print(petrol_car.get_car_type())
+print(petrol_car.__class__)
+car.__class__ = CarPetrol
+print(car.__class__)
 
-
-car_ford_gas = CarGas('Ford', 2005, 210)
-
-print(car_ford_gas.get_car_type())
-car_ford_gas.change_type('petrol')
-print(car_ford_gas.get_car_type())
-
-
-car_nissan_electro = CarElectro('Nissan', 2016, 190)
-
-print(car_nissan_electro.get_car_type())
-car_nissan_electro.change_type('petrol')
-print(car_nissan_electro.get_car_type())
+gas_car = car.set_car_type('gas')  # It returns `GasCar` instance.
