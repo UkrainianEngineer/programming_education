@@ -12,11 +12,6 @@ class Car(object):
     def change_type(self, new_type):
         self.car_type = new_type
 
-    def set_car_type(self, car_type):
-        # return CarPetrol(self.model, self.year, self.max_speed)
-        self.__class__ = CarPetrol
-        return self
-
     def get_model(self):
         return self.model
 
@@ -25,6 +20,18 @@ class Car(object):
 
     def get_max_speed(self):
         return self.max_speed
+
+    @classmethod
+    def get_needed_class(cls, car_type_needed):
+        for subclass in cls.__subclasses__():
+            if car_type_needed.title() == subclass.__dict__['car_type']:
+                return subclass
+
+    def set_car_type(self, car_type_needed):
+        # return self.get_needed_class(car_type_needed)(self.model, self.year, self.max_speed)
+        return CarPetrol(self.model, self.year, self.max_speed)
+        # self.__class__ = CarPetrol
+        # return self
 
 
 class CarGas(Car):
@@ -55,8 +62,14 @@ print(petrol_car.get_model())  # Returns `BMW`
 print(petrol_car.get_year())  # Returns 2018
 print(petrol_car.get_max_speed())  # Returns 300
 print(petrol_car.get_car_type())
+
+
 print(petrol_car.__class__)
-car.__class__ = CarPetrol
-print(car.__class__)
+print(Car.__subclasses__())
+print('******')
+print(CarGas.__getattribute__(petrol_car, 'car_type'))
+print(petrol_car.__dict__['car_type'])
+print(Car.get_needed_class('car_type'))
+
 
 gas_car = car.set_car_type('gas')  # It returns `GasCar` instance.
