@@ -21,11 +21,11 @@ class Car(object):
         self.car_type = new_car_type
 
     def set_car_type(self, some_car_type):
-        for child_class in Car.__subclasses__():
+        subclasses = Car.__subclasses__()
+        for child_class in subclasses:
             temp_object = child_class(self.model, self.year, self.max_speed)
             if some_car_type.title() == temp_object.car_type:
-                self = temp_object
-                return self
+                return temp_object
 
 
 class ElectricCar(Car):
