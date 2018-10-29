@@ -3,7 +3,8 @@ Reading last n lines from the file.
 """
 def read_n_last_lines(file_name, n):
     with open(file_name) as file:
-        for line in (file.readlines()[-n:]):
+        text = file.readlines()
+        for line in (text[-n:]):
             print(line, end='')
 
 
