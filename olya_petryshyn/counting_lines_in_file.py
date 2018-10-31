@@ -5,7 +5,6 @@ file_name = 'textfile.txt'
 
 def count_lines_number(file_name):
     with open(file_name) as file:
-        num_lines = sum(1 for line in file)
-    return num_lines
+        return len(file.readlines())
 
 print(count_lines_number(file_name))
