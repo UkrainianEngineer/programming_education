@@ -1,3 +1,6 @@
+"""
+Definition of Shape class and inherited class Square.
+"""
 class Shape(object):
     def area(self):
         return 0
@@ -8,6 +11,10 @@ class Square(Shape):
         self.length = length
 
     def area(self):
+        """
+        Method to calculate the are of particular square.
+        :return: area of the square.
+        """
         return self.length ** 2
 
 
