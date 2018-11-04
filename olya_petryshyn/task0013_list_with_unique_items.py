@@ -4,9 +4,6 @@ def unique_list_reversed(some_list):
     new_set = set()
     for item in some_list:
         new_set.add(item)
-    new_list = list()
-    for item in new_set:
-        new_list.append(item)
-    return new_list[::-1]
+    return list(new_set)[::-1]
 
-print(unique_list_reversed(list_of_ints))  # prints [120, 88, 24, 155, 12, 35]
+print(unique_list_reversed(list_of_ints))  # prints [155, 120, 24, 88, 12, 35]
