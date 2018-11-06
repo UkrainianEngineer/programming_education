@@ -9,7 +9,7 @@ esnetnes tset a si sihT
 
 
 def print_reverse(sentence):
-    print(sentence[::-1])
+    return sentence[::-1]
 
 
-print_reverse('This is a test sentense')
+print(print_reverse('This is a test sentense'))
