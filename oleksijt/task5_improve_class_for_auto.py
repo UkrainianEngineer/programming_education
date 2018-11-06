@@ -14,9 +14,12 @@ Methods:
  - get car max speed
 """
 
+import sys, inspect
+
 
 class Car:
     """Base class for autos."""
+    car_type = 'Car'
     def __init__(self, model, year, max_speed, car_type="Car"):
         self.car_type = car_type
         self.model = model
@@ -30,9 +33,9 @@ class Car:
     def set_car_type(self, new_type):
         # Changes class of object Car.
         found_class = False
-        for car_class in Car.__subclasses__():
-            if car_class.car_type == new_type.title():
-                self.__class__ = car_class
+        for key, data in inspect.getmembers(sys.modules[__name__], inspect.isclass):
+            if data.car_type == new_type.title():
+                setattr(self, '__class__', getattr(sys.modules[__name__], data.__name__, Car))
                 self.car_type = new_type
                 found_class = True
         if not found_class:
@@ -81,23 +84,30 @@ class PetrolCar(Car):
         self.car_type = self.__class__.car_type
 
 
-# Create new object 'Car'
-car1 = Car('BMW', 2018, 280, 'gas')
-print(car1.get_car_type())
+if __name__ == '__main__':
+    # Create new object 'Car'
+    car1 = Car('BMW', 2018, 280, 'gas')
+    print(car1.get_car_type())
 
-# Change type of object 'Car'
-car1.change_type('petrol')
-print(car1.get_car_type())
+    # Change type of object 'Car'
+    car1.change_type('petrol')
+    print(car1.get_car_type())
 
-# Create  new object 'Car'
-car = Car('BMW', 2018, 300)
-print(car)
+    # Create  new object 'Car'
+    car = Car('BMW', 2018, 300)
+    print(car)
 
-# Change object class
-petrol_car = car.set_car_type('petroewhgtl')  # It returns Car instance.
-petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
-print(petrol_car)
-print(petrol_car.get_model())  # Returns `BMW`
-print(petrol_car.get_year())  # Returns 2018
-print(petrol_car.get_max_speed())  # Returns 300
-print(petrol_car.get_car_type())  # Returns Petrol
+    # Change object class
+    petrol_car = car.set_car_type('petroewhgtl')  # It returns Car instance.
+    print(petrol_car)
+    petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+    print(petrol_car)
+    print(petrol_car.get_model())  # Returns `BMW`
+    print(petrol_car.get_year())  # Returns 2018
+    print(petrol_car.get_max_speed())  # Returns 300
+    print(petrol_car.get_car_type())  # Returns Petrol
+    gas_car = car.set_car_type('gas')  # It returns `GasCar` instance
+    print(gas_car)
+    print(gas_car.get_car_type())  # Returns Petrol
+    print(petrol_car)
+    print(car)
