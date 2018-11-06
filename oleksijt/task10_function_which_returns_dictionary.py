@@ -4,10 +4,7 @@ create_dict(N)
 
 
 def create_dict(n):
-    my_dict = {}
-    for item in range(1, n+1):
-        my_dict.update({item: item**2})
-    return my_dict
+    return {item: item ** 2 for item in range(1, n+1)}
 
 
 print(create_dict(1000))
