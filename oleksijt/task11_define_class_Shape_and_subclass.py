@@ -21,7 +21,7 @@ class Shape:
         return 0
 
 
-class Square:
+class Square(Shape):
     def __init__(self, length):
         self.length = length
 
