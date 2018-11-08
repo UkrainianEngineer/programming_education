@@ -33,10 +33,10 @@ square = Square(3)
 print(square.area())
 
 shape = Shape(4)
-shape1 = Shape()
+another_shape = Shape()
 print(shape.area())
 print(shape.length)
-print(shape1.area())
-print(shape1.length)
+print(another_shape.area())
+print(another_shape.length)
 
 
