@@ -3,12 +3,9 @@
 
 def find_longest_word(file_name):
     with open(file_name, 'r', encoding='utf-8') as f:
-        file_content = f.read()
 
         # Remove punctuation marks.
-        chars_to_be_replaced = [',', '.', ';', ':', '!', '?']
-        for character in chars_to_be_replaced:
-            file_content = file_content.replace(character, '')
+        file_content = f.read().translate(str.maketrans('', '', '[],.;:!?'))
 
         # Split file content into the words.
         words = file_content.split()
