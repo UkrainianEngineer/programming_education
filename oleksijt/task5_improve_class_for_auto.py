@@ -14,8 +14,15 @@ Methods:
  - get car max speed
 """
 
-import inspect
-import sys
+
+def get_class_list():
+    # Gets a list of classes from object().
+    globals_copy = globals().copy()
+    class_list = []
+    for item in globals_copy:
+        if isinstance(globals()[item], type(object)):
+            class_list.append(globals()[item])
+    return class_list
 
 
 class Car:
@@ -28,15 +35,24 @@ class Car:
         self.year = year
         self.max_speed = max_speed
 
+    def get_class_list(self):
+        # Gets a list of classes from object().
+        globals_copy = globals().copy()
+        class_list = []
+        for item in globals_copy:
+            if isinstance(globals()[item], type(object)):
+                class_list.append(globals()[item])
+        return class_list
+
     def change_type(self, car_type):
         # Changes only car_type parameter without class changing.
         self.car_type = car_type
 
     def set_car_type(self, new_type):
         # Creates new object from self with the same parameters.
-        for key, data in inspect.getmembers(sys.modules[__name__], inspect.isclass):
-            if data.car_type == new_type.title():
-                new_object = data(self.model, self.year, self.max_speed)
+        for cls in get_class_list():
+            if cls.car_type == new_type.title():
+                new_object = cls(self.model, self.year, self.max_speed)
                 break
         else:
             new_object = Car(self.model, self.year, self.max_speed)
