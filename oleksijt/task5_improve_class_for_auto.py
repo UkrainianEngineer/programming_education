@@ -35,15 +35,6 @@ class Car:
         self.year = year
         self.max_speed = max_speed
 
-    def get_class_list(self):
-        # Gets a list of classes from object().
-        globals_copy = globals().copy()
-        class_list = []
-        for item in globals_copy:
-            if isinstance(globals()[item], type(object)):
-                class_list.append(globals()[item])
-        return class_list
-
     def change_type(self, car_type):
         # Changes only car_type parameter without class changing.
         self.car_type = car_type
