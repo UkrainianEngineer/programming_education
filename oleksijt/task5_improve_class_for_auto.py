@@ -34,12 +34,11 @@ class Car:
 
     def set_car_type(self, new_type):
         # Creates new object from self with the same parameters.
-        found_class = False
         for key, data in inspect.getmembers(sys.modules[__name__], inspect.isclass):
             if data.car_type == new_type.title():
                 new_object = data(self.model, self.year, self.max_speed)
-                found_class = True
-        if not found_class:
+                break
+        else:
             new_object = Car(self.model, self.year, self.max_speed)
             print('Class for new car type not found. Base class set.')
         return new_object
