@@ -15,16 +15,6 @@ Methods:
 """
 
 
-def get_class_list():
-    # Gets a list of classes from object().
-    globals_copy = globals().copy()
-    class_list = []
-    for item in globals_copy:
-        if isinstance(globals()[item], type(object)):
-            class_list.append(globals()[item])
-    return class_list
-
-
 class Car:
     """Base class for autos."""
     car_type = 'Car'
@@ -41,7 +31,7 @@ class Car:
 
     def set_car_type(self, new_type):
         # Creates new object from self with the same parameters.
-        for cls in get_class_list():
+        for cls in class_list:
             if cls.car_type == new_type.title():
                 new_object = cls(self.model, self.year, self.max_speed)
                 break
@@ -87,7 +77,17 @@ class PetrolCar(Car):
         Car.__init__(self, model, year, max_speed, self.car_type)
 
 
+#  Please, change this if the list of classes was changed.
+class_list = [
+    Car,
+    GasCar,
+    ElectroCar,
+    PetrolCar
+    ]
+
+# Testing.
 if __name__ == '__main__':
+    print(class_list)
     # Create new object 'Car'.
     car1 = Car('BMW', 2018, 280, 'gas')
     print(car1.get_car_type())
