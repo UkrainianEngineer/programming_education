@@ -31,8 +31,8 @@ class Car:
 
     def set_car_type(self, new_type):
         # Creates new object from self with the same parameters.
-        for cls in class_list:
-            if cls.car_type == new_type.title():
+        for key, cls in class_dict.items():
+            if key == new_type.title():
                 new_object = cls(self.model, self.year, self.max_speed)
                 break
         else:
@@ -77,17 +77,17 @@ class PetrolCar(Car):
         Car.__init__(self, model, year, max_speed, self.car_type)
 
 
-#  Please, change this if the list of classes was changed.
-class_list = [
-    Car,
-    GasCar,
-    ElectroCar,
-    PetrolCar
-    ]
+#  Please, change this dictionary if the list of classes was changed.
+class_dict = {
+    'Car': Car,
+    'Gas': GasCar,
+    'Electro': ElectroCar,
+    'Petrol': PetrolCar
+    }
 
 # Testing.
 if __name__ == '__main__':
-    print(class_list)
+    print(class_dict)
     # Create new object 'Car'.
     car1 = Car('BMW', 2018, 280, 'gas')
     print(car1.get_car_type())
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     # Create similar object class in new class
     petrol_car = car.set_car_type('petroewhgtl')  # It returns Car instance.
     print(petrol_car, petrol_car.__dict__)
-    petrol_car = car.set_car_type('petrol')  # It returns `PetrolCar` instance.
+    petrol_car = car.set_car_type('petrol')  # Returns `PetrolCar` instance.
     print(petrol_car, petrol_car.__dict__)
     print(petrol_car.get_model())  # Returns `BMW`
     print(petrol_car.get_year())  # Returns 2018
