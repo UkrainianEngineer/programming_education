@@ -12,6 +12,9 @@ Methods:
  - get car model
  - get car year
  - get car max speed
+
+ Please, change `class_dict` {`car_type`: `Class_name`}
+ at the bottom of the file  if the list of classes was changed.
 """
 
 
@@ -31,11 +34,10 @@ class Car:
 
     def set_car_type(self, new_type):
         # Creates new object from self with the same parameters.
-        for key, cls in class_dict.items():
-            if key == new_type.title():
-                new_object = cls(self.model, self.year, self.max_speed)
-                break
-        else:
+        try:
+            cls = class_dict.get(new_type.title())
+            new_object = cls(self.model, self.year, self.max_speed)
+        except TypeError:
             new_object = Car(self.model, self.year, self.max_speed)
             print('Class for new car type not found. Base class set.')
         return new_object
