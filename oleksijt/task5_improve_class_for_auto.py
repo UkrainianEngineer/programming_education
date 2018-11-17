@@ -33,14 +33,13 @@ class Car:
         self.car_type = car_type
 
     def set_car_type(self, new_type):
-        # Creates new object from self with the same parameters.
+        # Creates new object with the same parameters as self.
         try:
-            cls = class_dict.get(new_type.title())
-            new_object = cls(self.model, self.year, self.max_speed)
-        except TypeError:
-            new_object = Car(self.model, self.year, self.max_speed)
-            print('Class for new car type not found. Base class set.')
-        return new_object
+            new_class = class_dict[new_type.title()]
+            return new_class(self.model, self.year, self.max_speed)
+        except KeyError:
+            raise Exception('Class type `{}` not found. '
+                            'Please provide a correct type.'.format(new_type))
 
     def get_car_type(self):
         return self.car_type.title()
@@ -103,8 +102,8 @@ if __name__ == '__main__':
     print(car, car.__dict__)
 
     # Create similar object class in new class
-    petrol_car = car.set_car_type('petroewhgtl')  # It returns Car instance.
-    print(petrol_car, petrol_car.__dict__)
+    # petrol_car = car.set_car_type('petroewhgtl')  # It raises exception.
+    # print(petrol_car, petrol_car.__dict__)
     petrol_car = car.set_car_type('petrol')  # Returns `PetrolCar` instance.
     print(petrol_car, petrol_car.__dict__)
     print(petrol_car.get_model())  # Returns `BMW`
