@@ -28,13 +28,13 @@ Create `check_perms` function decorated by decorator. This function returns `All
 
 def access_control(func):
     def wrapper(*args, **kwargs):
-        # print('get:{}'.format(*args, **kwargs))
-        # print(args[0])
-
-        if args[0].role == 'admin':
-            func(*args, **kwargs)
-        else:
-            raise PermissionError
+        try:
+            if args[0].role == 'admin':
+                return func(*args, **kwargs)
+            else:
+                raise PermissionError
+        except PermissionError:
+            print('Access denied.')
     return wrapper
 
 
@@ -75,28 +75,25 @@ if __name__ == '__main__':
     oleksiy = User('Oleksiy', 'oleksijt')
     print(oleksiy, oleksiy.__dict__)
 
-    # print(oleksiy.get_name()) # Raises PermissionError.
-    # print(oleksiy.get_username()) # Raises PermissionError.
-    # print(oleksiy.get_user_info()) # Raises PermissionError.
+    print(oleksiy.get_name()) # Raises PermissionError.
+    print(oleksiy.get_username()) # Raises PermissionError.
+    print(oleksiy.get_user_info()) # Raises PermissionError.
 
     # Create user yuriy.
-    yuriy = User('Yuriy', 'Yurchykt')
+    yuriy = User('Yuriy', 'yurchykt')
     print(yuriy, yuriy.__dict__)
 
-    # print(yuriy.get_name()) # Raises PermissionError.
-    # print(yuriy.get_username()) # Raises PermissionError.
-    # print(yuriy.get_user_info()) # Raises PermissionError.
+    print(yuriy.get_name()) # Raises PermissionError.
+    print(yuriy.get_username()) # Raises PermissionError.
+    print(yuriy.get_user_info()) # Raises PermissionError.
 
     # Set oleksiy as admin.
     oleksiy.set_role('admin')
     print(oleksiy, oleksiy.__dict__)
-    print(oleksiy.get_name())
-    print(oleksiy.get_username())
-    print(oleksiy.get_user_info()) # Raises PermissionError.
+    print(oleksiy.get_name())  # Doesn't raises PermissionError.
+    print(oleksiy.get_username())  # Doesn't raises PermissionError.
+    print(oleksiy.get_user_info())  # Doesn't raises PermissionError.
 
-
-
-    print(oleksiy.get_user_info())
 
     # Check permission
     print(oleksiy.check_perms())
