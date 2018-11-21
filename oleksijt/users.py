@@ -1,32 +1,23 @@
-"""
-This module contents functions that serve Users:
+""" This module contents functions and classes, that serve Users:
 
-`get_name` - returns user's name;
-`get_username` - returns user's login;
-`get_user_info` - returns user object's parameters;
-`get_user_info` - returns user object's parameters. This function
- decorated by perm_control function;
+`access_control` - decorator function which controls user access
+    to functions;
 
-`get_user_info` - returns user object's parameters;
-`get_user_info` - returns user object's parameters;
-`get_user_info` - returns user object's parameters;
-
-
-
-15. This task contains a few parts:
-Write a custom function which returns your name or username.
-Write a decorator which allows access for your user and prints “Permission denied” for other users.
-
-Tips:
-Create `get_user_info` function which returns your name or username.
-Create decorator which raises Exception if `get_user_info` returns not your name or username
-Create `check_perms` function decorated by decorator. This function returns `Allowed access` if user validation is successful.
-
-
+`User` - base class for users;
+    `set_role` - sets roles for access handling.
+    `get_name` - returns user's name. This function
+         decorated by perm_control function;
+    `get_username` - returns user's login. This function
+         decorated by perm_control function;
+    `get_user_info` - returns user object's parameters. This function
+         decorated by perm_control function;
+    `check_perms` - checks permission for given user. This function
+         decorated by perm_control function.
 """
 
 
 def access_control(func):
+    # Decorator function to control user access to functions
     def wrapper(*args, **kwargs):
         try:
             if args[0].role == 'admin':
@@ -34,67 +25,75 @@ def access_control(func):
             else:
                 raise PermissionError
         except PermissionError:
-            print('Access denied.')
+            print('Access denied. You can not perform this operation.')
     return wrapper
 
 
 class User:
-
+    """Base class for users."""
     def __init__(self, name, username, role='guest'):
         self.name = name
         self.username = username
         self.role = role
 
     def set_role(self, role):
+        # Sets roles for access handling.
         self.role = role
 
     @access_control
     def get_name(self):
+        # Returns user's name.
         return self.name
 
     @access_control
     def get_username(self):
+        # Returns user 's login.
         return self.username
 
     @access_control
     def get_user_info(self):
+        # Returns  user object's parameters.
         user_info = self.__dict__
-        print('infunc', user_info)
         return user_info
 
-    def check_perms(self):
+    @access_control
+    def check_perms(self, user):
+        # Function checks permission for given user.
         permission = 'Denied access'
-        if self.role == 'admin':
+        if user.role == 'admin':
             permission = 'Allowed access'
         return permission
 
 
 if __name__ == '__main__':
 
+    print(__doc__)
+    print(User.__doc__)
+
     # Create user oleksiy.
     oleksiy = User('Oleksiy', 'oleksijt')
     print(oleksiy, oleksiy.__dict__)
 
-    print(oleksiy.get_name()) # Raises PermissionError.
-    print(oleksiy.get_username()) # Raises PermissionError.
-    print(oleksiy.get_user_info()) # Raises PermissionError.
+    print(oleksiy.get_name())  # Raises PermissionError.
+    print(oleksiy.get_username())  # Raises PermissionError.
+    print(oleksiy.get_user_info())  # Raises PermissionError.
 
     # Create user yuriy.
     yuriy = User('Yuriy', 'yurchykt')
     print(yuriy, yuriy.__dict__)
 
-    print(yuriy.get_name()) # Raises PermissionError.
-    print(yuriy.get_username()) # Raises PermissionError.
-    print(yuriy.get_user_info()) # Raises PermissionError.
+    print(yuriy.get_name())  # Raises PermissionError.
+    print(yuriy.get_username())  # Raises PermissionError.
+    print(yuriy.get_user_info())  # Raises PermissionError.
 
     # Set oleksiy as admin.
     oleksiy.set_role('admin')
     print(oleksiy, oleksiy.__dict__)
-    print(oleksiy.get_name())  # Doesn't raises PermissionError.
-    print(oleksiy.get_username())  # Doesn't raises PermissionError.
-    print(oleksiy.get_user_info())  # Doesn't raises PermissionError.
-
+    print(oleksiy.get_name())  # Doesn't raise PermissionError.
+    print(oleksiy.get_username())  # Doesn't raise PermissionError.
+    print(oleksiy.get_user_info())  # Doesn't raise PermissionError.
 
     # Check permission
-    print(oleksiy.check_perms())
-    print(yuriy.check_perms())
+    print(oleksiy.check_perms(oleksiy))  # Returns `Allowed access`
+    print(oleksiy.check_perms(yuriy))  # Returns `Denied access`
+    print(yuriy.check_perms(oleksiy))  # Raises PermissionError.
