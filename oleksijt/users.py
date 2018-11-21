@@ -6,13 +6,13 @@
 `User` - base class for users;
     `set_role` - sets roles for access handling.
     `get_name` - returns user's name. This function
-         decorated by perm_control function;
+         decorated by access_control function;
     `get_username` - returns user's login. This function
-         decorated by perm_control function;
+         decorated by access_control function;
     `get_user_info` - returns user object's parameters. This function
-         decorated by perm_control function;
+         decorated by access_control function;
     `check_perms` - checks permission for given user. This function
-         decorated by perm_control function.
+         decorated by access_control function.
 """
 
 
