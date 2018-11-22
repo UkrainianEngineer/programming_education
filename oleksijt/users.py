@@ -53,7 +53,7 @@ class User:
     @access_control
     def get_user_info(self):
         # Returns  user object's parameters.
-        user_info = self.__dict__
+        user_info = vars(self)
         return user_info
 
     @access_control
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     # Create user oleksiy.
     oleksiy = User('Oleksiy', 'oleksijt')
-    print(oleksiy, oleksiy.__dict__)
+    print(oleksiy, vars(oleksiy))
 
     print(oleksiy.get_name())  # Raises PermissionError.
     print(oleksiy.get_username())  # Raises PermissionError.
@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
     # Create user yuriy.
     yuriy = User('Yuriy', 'yurchykt')
-    print(yuriy, yuriy.__dict__)
+    print(yuriy, vars(yuriy))
 
     print(yuriy.get_name())  # Raises PermissionError.
     print(yuriy.get_username())  # Raises PermissionError.
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     # Set oleksiy as admin.
     oleksiy.set_role('admin')
-    print(oleksiy, oleksiy.__dict__)
+    print(oleksiy, vars(oleksiy))
     print(oleksiy.get_name())  # Doesn't raise PermissionError.
     print(oleksiy.get_username())  # Doesn't raise PermissionError.
     print(oleksiy.get_user_info())  # Doesn't raise PermissionError.
