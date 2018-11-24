@@ -13,14 +13,10 @@ admin_name = 'Oleksiy'
 
 def access_control(func):
     # Decorator function which controls user access to functions
-    def wrapper(name):
-        try:
-            if name == admin_name:
-                return func(name)
-            else:
-                raise PermissionError
-        except PermissionError:
-            print('Permission denied')
+    def wrapper(*args, **kwargs):
+        if args[0] != admin_name:
+            raise PermissionError('Permission denied.')
+        return func(*args, **kwargs)
     return wrapper
 
 
@@ -36,9 +32,8 @@ def check_perms(name):
     return 'Allowed access'
 
 
-print(get_user_info('Oleksiy')) #  Prints `Oleksiy`
-print(get_user_info('Yuriy')) #  Prints `Permission denied.`
+print(get_user_info('Oleksiy'))  # Prints `Oleksiy`
+print(get_user_info('Yuriy'))  # Prints `Permission denied.`
 
-print(check_perms('Oleksiy')) #  Prints `Allowed access`
-print(check_perms('Yuriy')) #  Prints `Permission denied.`
-
+print(check_perms('Oleksiy'))  # Prints `Allowed access`
+print(check_perms('Yuriy'))  # Prints `Permission denied.`
