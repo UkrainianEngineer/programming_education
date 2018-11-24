@@ -20,10 +20,10 @@ def access_control(func):
     # Decorator function to control user access to functions
     def wrapper(*args, **kwargs):
         try:
-            if args[0].role == 'admin':
-                return func(*args, **kwargs)
-            else:
+            if args[0].role != 'admin':
                 raise PermissionError
+            else:
+                return func(*args, **kwargs)
         except PermissionError:
             print('Access denied. You can not perform this operation.')
     return wrapper
