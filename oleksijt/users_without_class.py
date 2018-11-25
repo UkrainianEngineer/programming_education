@@ -31,9 +31,9 @@ def check_perms(name):
     # Function checks permission for user.
     return 'Allowed access'
 
+if __name__ == '__main__':
+    print(get_user_info('Oleksiy'))  # Prints `Oleksiy`
+    print(get_user_info('Yuriy'))  # Prints `Permission denied.`
 
-print(get_user_info('Oleksiy'))  # Prints `Oleksiy`
-print(get_user_info('Yuriy'))  # Prints `Permission denied.`
-
-print(check_perms('Oleksiy'))  # Prints `Allowed access`
-print(check_perms('Yuriy'))  # Prints `Permission denied.`
+    print(check_perms('Oleksiy'))  # Prints `Allowed access`
+    print(check_perms('Yuriy'))  # Prints `Permission denied.`
