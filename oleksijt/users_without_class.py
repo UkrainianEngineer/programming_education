@@ -8,6 +8,9 @@
      decorated by access_control function.
 """
 
+from exceptions import PermissionDenied
+
+
 admins_list = ['pivanchy', 'oleksijt']
 moderators_list = ['Yuriy', 'oleksijt']
 
@@ -17,7 +20,7 @@ def allowed_users(user_list):
     def access_control(func):
         def wrapper(*args, **kwargs):
             if args[0] not in user_list:
-                raise PermissionError('Permission denied.')
+                raise PermissionDenied('Permission denied.')
             return func(*args, **kwargs)
         return wrapper
     return access_control
@@ -38,7 +41,10 @@ def check_perms(name):
 if __name__ == '__main__':
     print(get_user_info('oleksijt'))  # Prints `Oleksiy`
     print(get_user_info('pivanchy'))  # Prints `pivanchy`
-    print(get_user_info('Yuriy'))  # Prints `Permission denied.`
+    try:
+        print(get_user_info('Yuriy'))  # Prints `Permission denied.`
+    except PermissionDenied:
+        print('Permission denied.')
 
     print(check_perms('pivanchy'))  # Prints `Allowed access`
     print(check_perms('Yuriy'))  # Prints `Allowed access`
