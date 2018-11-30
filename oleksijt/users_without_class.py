@@ -29,7 +29,7 @@ def get_user_info(name):
     return name
 
 
-@allowed_users(admins_list + moderators_list)
+@allowed_users(set(admins_list + moderators_list))
 def check_perms(name):
     # Function checks permission for user.
     return 'Allowed access'
