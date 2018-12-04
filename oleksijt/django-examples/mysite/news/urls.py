@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import ListView, DetailView
+from news.models import Articles
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('mainApp.urls')),
-    path('news/', include('news.urls')),
-    path('webexample/', include('webexample.urls')),
+   path('', ListView.as_view(queryset=Articles.objects.all().order_by("-date")[:20], template_name="news/posts.html")),
+
 ]
